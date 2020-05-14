@@ -3,8 +3,8 @@ let authorization = null;
 session.subscribe($session=>{
   authorization = $session?$session.token:null
 })
-//const HOSTNAME = "https://orook.ga/";
-const HOSTNAME = "http://localhost:8080/"
+const HOSTNAME = "https://remotelaw.ga/";
+//const HOSTNAME = "http://localhost:8080/"
 //const HOSTNAME = window.HOSTNAME;
 
 export const fetch2 = window.fetch2 = function(url, obj){
