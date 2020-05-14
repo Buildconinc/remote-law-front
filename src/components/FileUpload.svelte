@@ -15,7 +15,7 @@
   }
 
   import { createEventDispatcher } from "svelte";
-  export let multiple = true;
+  export let multiple = false;
   let dragging = false;
   const dispatch = createEventDispatcher();
   function startDragging() {
@@ -29,8 +29,77 @@
     const files = getFilesFunction(event);
     if (files.length) {
       dispatch("input", { files: multiple ? files : files[0] });
+      uploadFile( multiple ? files : files[0] )
     }
   };
+
+
+
+  ///// Igor
+  import Toast from 'svelte-toast'
+  const izitoast = new Toast()
+  import { session } from '../store/loginStore.js'
+  let token = null;
+  session.subscribe($session=>{
+    token = $session?$session.token:null
+  })
+
+  export let progress = 0
+  export let state = null
+  export let url = null 
+
+
+  function uploadFile(file){
+    //var file = file1.files[0];
+    var formdata = new FormData();
+    formdata.append("file", file);
+    formdata.append('user', 'person');// Additional params here (fileCategory...)
+
+    var ajax = new XMLHttpRequest();
+    ajax.upload.addEventListener("progress", progressHandler, false);
+    ajax.addEventListener("load", completeHandler, false);
+    ajax.addEventListener("error", errorHandler, false);
+    ajax.addEventListener("abort", abortHandler, false);
+    ajax.open("POST", "https://remotelaw.ga/api/v2/fileupload"); // http://www.developphp.com/video/JavaScript/File-Upload-Progress-Bar-Meter-Tutorial-Ajax-PHP
+    ajax.setRequestHeader('Authorization', 'Bearer ' + token);
+    ajax.send(formdata);
+    state = 'uploading'
+  }
+
+  function progressHandler(event) {
+    var percent = Math.round( (event.loaded / event.total) * 100);
+    console.log('UploadProgress % ',Math.round(percent))
+    progress =  percent==100?0:percent;
+    dispatch("progress", progress);
+  }
+
+  function completeHandler(event) {
+    console.log('event.target.responseText', event.target.responseText)
+    var resp = {}
+    try {
+      resp = JSON.parse(event.target.responseText)
+    }
+    catch (err){
+      izitoast.error( 'Upload completed but bad response received '+event.target.responseText);
+    }
+    url = resp.results
+    izitoast.success('Upload finished');
+    dispatch("uploaded", { url:url });
+    progress = 0 //clear progress bar after successful upload
+    dispatch("progress", progress);
+    state = 'done'
+  }
+
+  function errorHandler(event) {
+    izitoast.error('Upload Failed');
+    state = 'error'
+  }
+
+  function abortHandler(event) {
+    izitoast.error('Upload Aborted');
+    state = 'error'
+  }
+
 </script>
 
 <style>
