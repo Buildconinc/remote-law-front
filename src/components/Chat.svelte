@@ -2,7 +2,7 @@
   import { fly } from 'svelte/transition';
   import { tick } from 'svelte';
   import { name, greeting } from './chatStore.js';
-  import { onMount } from 'svelte';
+  import { afterUpdate } from 'svelte';
 
   import { socket } from './sock.js';
 /*
@@ -25,9 +25,10 @@
     {id:10, ts: ' 11:01 AM    |    June 9', incoming:false, img:'https://ptetutorials.com/images/user-profile.png', text:'4 Test which is a new approach to have all solutions'},
   ]
 
-	onMount(() => {
-		msg_history_el.scrollTop = 9999999
+	afterUpdate(() => {
+    if (msg_history_el) msg_history_el.scrollTop = msg_history_el.scrollHeight
 	});
+
 
 	async function handleKeydown(event) {
     if (event.key=='Enter') {
