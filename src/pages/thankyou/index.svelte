@@ -1,0 +1,15 @@
+    <div class="jumbotron jumbotron-fluid text-center">
+      <div class="container">
+        <h1 class="mb-3 mb-md-5">Thank you for signing-up!</h1>
+        <p class="lead mb-3 mb-md-5">
+          Please check your e-mail for further instructions for completing your
+          sign-up processes.
+        </p>
+        <p class="mb-3 mb-md-5">
+          Having trouble or got any questions? <a href="#">Contact us.</a>
+        </p>
+        <a href="/index" class="btn btn-primary btn-lg" role="button"
+          >Continue to homepage</a
+        >
+      </div>
+    </div>
