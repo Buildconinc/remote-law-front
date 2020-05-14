@@ -1,5 +1,6 @@
 <script>
   import { service_groups as service_groups_store} from '../../../store/getStore.js'
+  import { session } from '../../../store/loginStore.js'
 
   import { goto } from '@sveltech/routify'
   export let service 
@@ -12,8 +13,13 @@
   <p>izabrani servis: <b>{service}</b></p>
   <div class="row">
 
-
-
+{#if $session.isLogedIn }
+Ulogovan user, ceraj na paypal <a href="https://www.paypal.me/vujovicigor/29usd" target="_blank">https://www.paypal.me/vujovicigor/29usd</a>
+{:else}
+Niste ulogovani<br>
+Napravite nalog <button class="btn btn-primary" on:click={()=>$goto('/signup/?from=/individuals/checkout/'+service)}>Signup</button>
+<br> ili se ulogujte na <button class="btn btn-primary" on:click={()=>$goto('/login/?from=/individuals/checkout/'+service)}>Login</button>
+{/if}
 
 
 

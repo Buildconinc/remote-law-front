@@ -1,6 +1,7 @@
 <script>
   import { session } from '../../store/loginStore.js'
   import { fetch2 } from '../../utils/fetch2.js'
+  import { params, goto } from '@sveltech/routify'
   import Toast from 'svelte-toast'
   const izitoast = new Toast()
 
@@ -32,9 +33,20 @@
         //izitoast.success({ message: 'You are in'}); 
         $session = { ...resp.results, isLogedIn:true, token:resp.token }
         console.log('session iz ajaxa', $session)
-//        $session.token = resp.token
-        //self.set('G.showModal',false)
-    } //else izitoast.error({ message: 'Wrong credentials'});                
+        if ($params && $params.from) $goto($params.from)
+        else $goto('/client/dashboard')
+        return
+    }   
+    if (resp && resp.results && resp.results.status=='exist') { 
+      izitoast.info( 'User already exists.'); 
+      return  
+    }
+    if (resp && resp.results && resp.results.status=='ok') { 
+      izitoast.success( 'Thank you.');
+      $goto('/login') 
+      return  
+    }
+    izitoast.error( 'Wrong credentials');                
 
   }
 

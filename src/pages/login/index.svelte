@@ -3,7 +3,7 @@
   import { session } from '../../store/loginStore.js'
   import { fetch2 } from '../../utils/fetch2.js'
   import { goto } from '@sveltech/routify'
-
+  import { params } from '@sveltech/routify'
   import Toast from 'svelte-toast'
   const izitoast = new Toast()
 
@@ -22,9 +22,10 @@
     var [resp,err] = await fetch2('api/v2/auth', obj)
     if (!resp || !resp.token) { izitoast.error('Wrong credentials'); return }
     //socket.emit('client_token', resp.token)
-    izitoast.success('You are in'); 
+    izitoast.success('Welcome'); 
     $session = { ...resp.results, isLogedIn:true, token:resp.token }
-    $goto('/client/dashboard')
+    if ($params && $params.from) $goto($params.from)
+    else $goto('/client/dashboard')
   }
 </script>
 
@@ -61,7 +62,7 @@
         </form>
         <div class="text-center">
           <p>or</p>
-          <a href="/signup" class="btn btn-success">Create account</a>
+          <a href="/signup{$params.from?'/?from='+$params.from:''}" class="btn btn-success">Create account</a>
           <!--
           <p class="small">
             <a href="#">Have you forgotten your account details?</a>
