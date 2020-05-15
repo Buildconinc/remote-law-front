@@ -12,8 +12,7 @@
     name_last:null
   }
 
-  $: console.log('session obs', $session)
-  
+
   //this.focusFirstElement();
  // if (localStorage.getItem('token')){
   if ($session.token){
@@ -24,6 +23,18 @@
   }
 
   async function createAccount(){
+    if (!obj.email) {
+      izitoast.info( 'email missing');
+      return
+    }
+    if (!obj.name_first || !obj.name_last) {
+      izitoast.info( 'name missing');
+      return
+    }
+    if (!obj.password ) {
+      izitoast.info( 'password missing');
+      return
+    }
     console.log('createAccount')
     var [resp,err] = await fetch2('api/v2/signup', obj)
     if (resp && resp.token) {
@@ -46,7 +57,7 @@
       $goto('/login') 
       return  
     }
-    izitoast.error( 'Wrong credentials');                
+    izitoast.error( 'Error');                
 
   }
 

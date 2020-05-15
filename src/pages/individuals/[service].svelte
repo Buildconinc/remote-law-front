@@ -16,9 +16,8 @@
     <div class="col-md-6 mb-4">
       <ul class="list-group">
         {#each services as {uuid, label}}
-          <li class="list-group-item" class:active={service==uuid} 
-            on:click={()=>{ $goto('/individuals/'+uuid) }}
-          >{label}</li>
+          <a href="javascript:void(0)" class="list-group-item list-group-item-action" class:active={service==uuid} 
+            on:click={()=>{ $goto('/individuals/'+uuid) }}>{label}</a>
         {/each}
       </ul>
     </div>
@@ -27,7 +26,7 @@
     <div class="col-md-6 mb-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Daj 29 baksa</h5>
+          <h5 class="card-title"> $29 price</h5>
           <p class="card-text">blabalbalba.</p>
           <a href="/individuals/beforecheckout/{service}" class="btn btn-primary">SEND YOUR REQUEST</a>
         </div>      

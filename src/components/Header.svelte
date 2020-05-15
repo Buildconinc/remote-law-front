@@ -2,13 +2,24 @@
   import { isActive, url } from '@sveltech/routify'  
   import { afterUpdate } from 'svelte';
   import { session } from '../store/loginStore.js'
-  $: console.log('user u hederu', $session)
+  import { clickOutside} from '../utils/clickOutside.js';
+  import { beforeUrlChange } from "@sveltech/routify"
 
-import { service_groups as service_groups_store} from '../store/getStore.js'
-console.log('uHederu', $service_groups_store)
+  $beforeUrlChange((event, store) => {
+    if (collapse_el) collapse_el.classList.add('collapse');
+    return true
+  })
+
+  import { service_groups as service_groups_store} from '../store/getStore.js'
+  console.log('uHederu', $service_groups_store)
 // bzveze test
 
-  // Mobile menu
+  function handleClickOutside(e){
+    console.log('click outsie menu')
+    collapse_el.classList.add('collapse');
+  }
+
+// Mobile menu
   let narrow;
   let windowWidth;
   handleResize();
@@ -40,7 +51,7 @@ console.log('uHederu', $service_groups_store)
     ['/individuals', 'Individuals'],
     ['/realestate', 'Real Estate'],
     ['/taxation', 'Taxation'],
-    ['/client/dashboard', 'Dashboard']
+ //   ['/client/dashboard', 'Dashboard']
   ].map(([path, name]) => {
     return {
       name,
@@ -58,7 +69,7 @@ console.log('uHederu', $service_groups_store)
 <svelte:window on:resize={handleResize}></svelte:window>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" use:clickOutside on:click_outside={handleClickOutside}>
   <a class="navbar-brand" href="/">RemoteLaw </a>
   <button on:click={toggle} class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -76,7 +87,7 @@ console.log('uHederu', $service_groups_store)
 
 {#if $session.isLogedIn }
     <ul class="navbar-nav ">
-      <li class="nav-item" >
+      <li class="nav-item" class:active={$isActive('/client/dashboard')}>
         <a href="/client/dashboard" class="nav-link">Dashboard</a>
       </li>
       <li class="nav-item" >

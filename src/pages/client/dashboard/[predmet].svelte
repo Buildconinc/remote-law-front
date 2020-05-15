@@ -1,7 +1,7 @@
 <script>
   import { session } from '../../../store/loginStore.js'
   import FileUpload from '../../../components/FileUpload.svelte';
-  
+  import Chat from '../../../components/Chat.svelte'
   function gotFiles(files) {
     //do something with files
     console.log('files', files)
@@ -20,18 +20,27 @@
     border: dashed 1px green;
   }
 </style>
-<div class="container" style="flex:1; overflow:auto">
-  <FileUpload on:input={gotFiles}>
-  <div class="dropzone">
-    Whatever you want here.<br>
-    DROPZONE
-  </div>
-  </FileUpload>
 
-  loged_in <input type="checkbox" bind:checked={$session.isLogedIn}>
-  <br>
-  predmet = {predmet}
-  <br>
-  To see an drugi, go to 
-  <a href="/client/drugi">/client/drugi</a>
+
+<div class="container-fluid" style="flex:1; overflow:auto; height:100%">
+  <div class="row" style="height:100%">
+    <div class="col-12 col-sm-6 col-lg-8" >
+      <h1>Izabrani predmet = {predmet}</h1>
+      <p>loged_in <input type="checkbox" bind:checked={$session.isLogedIn}></p>
+      <FileUpload on:input={gotFiles}>
+      <div class="dropzone">
+        Upload doc here.<br>
+        DROPZONE
+      </div>
+      </FileUpload>
+      <p>
+        Lista predmeta 
+        <a href="/client/dashboard">/client/dashboard</a>
+      </p>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4" style="height:100%">
+      <Chat></Chat>
+    </div>
+
+  </div>
 </div>
