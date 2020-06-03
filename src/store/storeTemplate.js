@@ -17,7 +17,8 @@ async function save(sn, obj ) {
   let service_name = sn + '_save'
   var [resp,err] = await fetch2('api/v2/'+service_name, obj) 
   //todo: error handling
-  return resp.results 
+  return [resp,err] 
+  //return resp.results 
 }
 
 async function del(sn, obj ) {
@@ -68,21 +69,23 @@ function storeTemplate(SERVICE_NAME, PARAMS) {
     },    
     save: async (obj, silent = false)=> {
       update(s =>  { s.state='loading'; return s})
-      let saveResponse = await save(SERVICE_NAME, {...PARAMS, ...obj});
+      //let saveResponse = await save(SERVICE_NAME, {...PARAMS, ...obj});
+      let [resp, err] = await save(SERVICE_NAME, {...PARAMS, ...obj});
+      if (err) return [null, err]
       let rez = await refresh(SERVICE_NAME, PARAMS)
       if (rez===null) update(s => { s.state='error'; return s})
       if (rez) {
-        if (!silent) izitoast.success({ message: 'Saved'}); 
+        //if (!silent) izitoast.success({ message: 'Saved'}); 
         update(s =>  { return {state:'ready', data:rez} }) 
       }
-      return saveResponse
+      return [resp.results]
     },    
     insert: async (name)=> {
       update(s =>  { s.state='loading'; return s})
       await insert(name);
       let rez = await refresh()
-      if (rez===null) update(s => { s.state='error'; return s})
-      if (rez) update(s =>  { return {state:'ready', data:rez} }) 
+      if (rez===null) update(s => { s.state='error'; return s })
+      if (rez) update(s =>  { return {state:'ready', data:rez } }) 
     },
     refresh: async (params)=> {
       if (params) PARAMS = {...params} //!!!

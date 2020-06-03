@@ -47,10 +47,9 @@
   // Main nav
   let links = [];
   $: links = [
-    ['/companies', 'Companies'],
-    ['/individuals', 'Individuals'],
-    ['/realestate', 'Real Estate'],
-    ['/taxation', 'Taxation'],
+    ['/lawyer/active_cases', 'Aktivni predmeti'],
+    ['/lawyer/archived_cases', 'Arhivirani predmeti'],
+    ['/lawyer/superadmin/active', 'Superadmin'],
  //   ['/client/dashboard', 'Dashboard']
   ].map(([path, name]) => {
     return {

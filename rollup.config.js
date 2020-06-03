@@ -5,7 +5,7 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy'
 import del from 'del'
-
+import alias from '@rollup/plugin-alias'
 
 
 const staticDir = 'static'
@@ -30,6 +30,7 @@ function createConfig({ output, inlineDynamicImports, plugins = [] }) {
       ...output
     },
     plugins: [
+      alias({ entries: [{ find: '@', replacement: './src' },] }),
       copy({
         targets: [
           { src: staticDir + '/**/!(__index.html)', dest: distDir },

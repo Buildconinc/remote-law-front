@@ -1,19 +1,25 @@
 
 <script>
-  import { session } from '../../store/loginStore.js'
+  import { session, tmp_user_uuid } from '../../store/loginStore.js'
   import { fetch2 } from '../../utils/fetch2.js'
   import { goto } from '@sveltech/routify'
   import { params } from '@sveltech/routify'
   import Toast from 'svelte-toast'
+  import { socketPromise } from '../../components/sock.js'
+  let socket 
+  socketPromise.then((s)=> socket=s )
   const izitoast = new Toast()
 
   let obj = {
     email:null,
-    password:null
+    password:null,
+    tmp_user_uuid:tmp_user_uuid
   }
   
   if ($session.token && $session.isLogedIn){
-    //socket.emit('client_token', localStorage.getItem('token'))
+    socketPromise.then((socket)=> {
+      socket.emit('client_token', $session.token)
+    })
     izitoast.success('Welcome back');
     $goto('/client/dashboard')
   }
@@ -21,7 +27,7 @@
   async function tryLogin(){
     var [resp,err] = await fetch2('api/v2/auth', obj)
     if (!resp || !resp.token) { izitoast.error('Wrong credentials'); return }
-    //socket.emit('client_token', resp.token)
+    if (socket) socket.emit('client_token', resp.token)
     izitoast.success('Welcome'); 
     $session = { ...resp.results, isLogedIn:true, token:resp.token }
     if ($params && $params.from) $goto($params.from)

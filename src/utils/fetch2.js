@@ -23,7 +23,10 @@ export const fetch2 = window.fetch2 = function(url, obj){
       }).then(function(response){ return response.json()})
       .then(function(j){ 
         console.log('j',j); 
-        resolve([j,null]) 
+        if (j && j.errorCode)
+          resolve([null,j])
+        else
+          resolve([j,null]) 
       })
       .catch(function(err){
         console.log('nework error!', err);

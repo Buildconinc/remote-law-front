@@ -39,7 +39,7 @@
       </p>
     </div>
     <div class="col-12 col-sm-6 col-lg-4" style="height:100%">
-      <Chat></Chat>
+      <Chat {predmet}></Chat>
     </div>
 
   </div>

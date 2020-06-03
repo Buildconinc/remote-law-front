@@ -4,26 +4,20 @@
   import { name, greeting } from './chatStore.js';
   import { afterUpdate } from 'svelte';
 
-  import { socket } from './sock.js';
+ // import { socket } from './sock.js';
+  import { socketPromise } from './sock.js'
+  let socket 
+  socketPromise.then((s)=> socket = s )
+
+  export let predmet
+  import {chatStore} from '@/store/chatStore.js'
+  chatStore.getPredmet(predmet)
 /*
   import { route, getDirection } from '@sveltech/routify'
   $: lastRoute = $route.last
   $: direction = getDirection($route, lastRoute)
   $: console.log('direction', $route)
   */
-
-  let msgs = [
-    {id:1, ts: '11:02 | friday', incoming:true, img:'https://ptetutorials.com/images/user-profile.png', text:'1 Test which is a new approach to have all solutions'},
-    {id:2, ts: ' 11:01 AM    |    June 9', incoming:false, img:'https://ptetutorials.com/images/user-profile.png', text:'2 Test which is a new approach to have all solutions'},
-    {id:3, ts: ' 11:01 AM    |    June 9', incoming:true, img:'https://ptetutorials.com/images/user-profile.png', text:'3 Test which is a new approach to have all solutions'},
-    {id:4, ts: ' 11:01 AM    |    June 9', incoming:false, img:'https://ptetutorials.com/images/user-profile.png', text:'4 Test which is a new approach to have all solutions'},
-    {id:5, ts: ' 11:01 AM    |    June 9', incoming:true, img:'https://ptetutorials.com/images/user-profile.png', text:'3 Test which is a new approach to have all solutions'},
-    {id:6, ts: ' 11:01 AM    |    June 9', incoming:false, img:'https://ptetutorials.com/images/user-profile.png', text:'4 Test which is a new approach to have all solutions'},
-    {id:7, ts: ' 11:01 AM    |    June 9', incoming:true, img:'https://ptetutorials.com/images/user-profile.png', text:'3 Test which is a new approach to have all solutions'},
-    {id:8, ts: ' 11:01 AM    |    June 9', incoming:true, img:'https://ptetutorials.com/images/user-profile.png', text:'4 Test which is a new approach to have all solutions'},
-    {id:9, ts: ' 11:01 AM    |    June 9', incoming:true, img:'https://ptetutorials.com/images/user-profile.png', text:'3 Test which is a new approach to have all solutions'},
-    {id:10, ts: ' 11:01 AM    |    June 9', incoming:false, img:'https://ptetutorials.com/images/user-profile.png', text:'4 Test which is a new approach to have all solutions'},
-  ]
 
 	afterUpdate(() => {
     if (msg_history_el) msg_history_el.scrollTop = msg_history_el.scrollHeight
@@ -43,8 +37,11 @@
   let text_to_send_el
   async function addMsg(){
     text_to_send_el.focus()
-    if (!text_to_send) return
-    msgs = [...msgs, {id:msgs.length+1, ts: ' 11:01 AM    |    June 9', incoming:false, img:'https://ptetutorials.com/images/user-profile.png', text:text_to_send}]    
+    if (!text_to_send || !text_to_send.trim()) return
+    text_to_send = text_to_send.trim()
+    //if (socket) socket.emit('chat_msg', {'text':text_to_send})
+    chatStore.addNewMessage(predmet, text_to_send)
+    //msgs = [...msgs, {id:msgs.length+1, ts: ' 11:01 AM    |    June 9', incoming:false, img:'https://ptetutorials.com/images/user-profile.png', text:text_to_send}]    
     await tick()
     text_to_send = ''
     msg_history_el.scrollTop = 9999999
@@ -64,14 +61,14 @@
 <div class="mesgs">
 
   <div class="msg_history" bind:this={msg_history_el}>
-    {#each msgs as msg (msg.id)}
+    {#each $chatStore[predmet] || [] as msg (msg.m_id)}
       {#if msg.incoming}
 
         <div class="incoming_msg" in:fly="{{ x: 40, duration: 200 }}">
           <div class="incoming_msg_img"> <img src="{msg.img}" alt="sunil"> </div>
           <div class="received_msg">
             <div class="received_withd_msg">
-              <p>{msg.text}</p>
+              <p>{msg.text1}</p>
               <span class="time_date">{msg.ts}</span></div>
           </div>
         </div>
@@ -80,8 +77,8 @@
 
         <div class="outgoing_msg" in:fly="{{ x: 40, duration: 200 }}">
           <div class="sent_msg">
-            <p>{msg.text}</p>
-            <span class="time_date">{msg.ts}</span> </div>
+            <p>{msg.text1}</p>
+            <span class="time_date">{new Date(msg.ts).toLocaleString()}</span> </div>
         </div>
 
       {/if}
@@ -124,6 +121,7 @@ img{ max-width:100%;}
   margin: 0;
   padding: 5px 10px 5px 12px;
   width: 100%;
+  white-space: pre-wrap;
 }
 .time_date {
   color: #747474;
@@ -147,6 +145,7 @@ img{ max-width:100%;}
   margin: 0; color:#fff;
   padding: 5px 10px 5px 12px;
   width:100%;
+  white-space: pre-wrap;
 }
 .outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
 .sent_msg {

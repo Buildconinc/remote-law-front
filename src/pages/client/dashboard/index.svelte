@@ -2,7 +2,14 @@
   import { session } from '../../../store/loginStore.js'
   $: console.log('sess dashb', $session)
   import { service_groups as service_groups_store} from '../../../store/getStore.js'
-  import  Modal  from '../../../components/Modal.svelte'
+
+//  import {storeTemplate} from '../../../store/storeTemplate.js'
+//  let client_cases = storeTemplate('client_case')
+//  $: console.log('client_cases:', $client_cases.data)
+  import { client_cases } from '@/store/getStore.js'
+
+
+  import Modal from '../../../components/Modal.svelte'
   let showModal = false
 </script>
 <style>
@@ -25,10 +32,10 @@
           <span class="badge badge-light">{label} </span> 
         {/each}
     <br>
-    Lista Vasih predmeta
-    <a href="/client/dashboard/uuid1">/client/dashboard/uuid1</a><br>
-    <a href="/client/dashboard/uuid2">/client/dashboard/uuid2</a><br>
-    <a href="/client/">/client/</a><br>
+    Lista Vasih predmeta: <br>
+    {#each $client_cases.data as caze}
+      <a href="/client/dashboard/{caze.case_uuid}">{caze.service_label}-{caze.case_text}</a><br>
+    {/each}
     {:else}
     <div style="text-align:center">
       <h2>Danger danger, high woltage</h2>

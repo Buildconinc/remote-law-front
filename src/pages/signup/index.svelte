@@ -1,6 +1,6 @@
 <script>
-  import { session } from '../../store/loginStore.js'
-  import { fetch2 } from '../../utils/fetch2.js'
+  import { session } from '@/store/loginStore.js'
+  import { fetch2 } from '@/utils/fetch2.js'
   import { params, goto } from '@sveltech/routify'
   import Toast from 'svelte-toast'
   const izitoast = new Toast()
@@ -11,7 +11,6 @@
     name_first:null,
     name_last:null
   }
-
 
   //this.focusFirstElement();
  // if (localStorage.getItem('token')){
