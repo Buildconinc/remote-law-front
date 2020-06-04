@@ -36,10 +36,10 @@
 <div class="container-fluid" style="overflow: auto; display: flex; flex-flow: column;">
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <a class="nav-link" class:active={$isActive('/lawyer/superadmin/active')} href="/lawyer/superadmin/active">Aktivni predmeti</a>
+      <a class="nav-link" class:active={$params.status=='ACTIVE'} href="/lawyer/superadmin/active?status=ACTIVE">Aktivni predmeti</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" class:active={$isActive('/lawyer/superadmin/active?tip=archived')} href="/lawyer/superadmin/active?tip=archived">Arhivirani predmeti</a>
+      <a class="nav-link" class:active={$params.status=='ARCHIVED'} href="/lawyer/superadmin/active?status=ARCHIVED">Arhivirani predmeti</a>
     </li>
   </ul>
 
@@ -50,11 +50,12 @@
       <!-- Lista predmeta -->
       <div class="row">
         {#each $sa_cases_active_list.data as item}
+        {#if $params.status == item.case_status}
           <div class="col-lg-6">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">
-                <img class="img rounded-circle" src="{item.client_profile_photo}" alt="{item.client_name_first}  {item.client_name_last}">
+                <img height="40" width="40" class="img rounded-circle" src="{item.client_profile_photo}" alt="{item.client_name_first}  {item.client_name_last}">
                 {item.client_name_first} {item.client_name_last}</h5>
                 <p class="card-text">{item.service_group_label} / {item.service_label}</p>
                 <p>Advokat: 
@@ -69,6 +70,7 @@
               </div>
             </div>
           </div>
+        {/if}
         {/each}
       </div>
     </div>

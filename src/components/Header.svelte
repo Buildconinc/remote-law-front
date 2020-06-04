@@ -69,7 +69,7 @@
 <svelte:window on:resize={handleResize}></svelte:window>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" use:clickOutside on:click_outside={handleClickOutside}>
+<nav class="navbar navbar-expand-md navbar-light bg-light" use:clickOutside on:click_outside={handleClickOutside}>
   <a class="navbar-brand" href="/">RemoteLaw </a>
   <button on:click={toggle} class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
