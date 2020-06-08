@@ -1,5 +1,5 @@
 <script>
-  import { service_groups as service_groups_store} from '../../store/getStore.js'
+  import { service_groups as service_groups_store} from '@/store/getStore.js'
   import { ready } from '@sveltech/routify'
   let services = []
   $: if ($service_groups_store.data && $service_groups_store.data[1]) {

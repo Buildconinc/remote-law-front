@@ -1,9 +1,9 @@
 import io  from 'socket.io-client';
 console.log('sock io', io)
 
-//export const socket = io('https://orook.net');
+//export const socket = io('https://remotelaw.ga');
 export const socketPromise = new Promise(function(resolve, reject) {
-  const socket = io('https://orook.net');
+  const socket = io('https://remotelaw.ga');
 
   socket.on('connect', function(){
     console.log('sock connect')

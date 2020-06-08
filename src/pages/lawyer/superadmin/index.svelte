@@ -5,6 +5,7 @@
   import { fetch2 } from '@/utils/fetch2.js'
   import Modal from '@/components/Modal.svelte'
   import { params } from '@sveltech/routify'
+  import CreateLawyerProfile from '@/components/CreateLawyerProfile.svelte'
 
   $: console.log('params SA', $params)
 
@@ -26,22 +27,42 @@
       sa_cases_active_list.refresh()
       sa_lawyers_list.refresh()
     }    
-
     showModal = false
   }
+  let showCreateProfileModal
 
   
 </script>
 <!-- MENI -->
 <div class="container-fluid" style="overflow: auto; display: flex; flex-flow: column;">
-  <ul class="nav nav-pills">
-    <li class="nav-item">
-      <a class="nav-link" class:active={$params.status=='ACTIVE'} href="/lawyer/superadmin/active?status=ACTIVE">Aktivni predmeti</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" class:active={$params.status=='ARCHIVED'} href="/lawyer/superadmin/active?status=ARCHIVED">Arhivirani predmeti</a>
-    </li>
-  </ul>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" class:active={$params.status=='ACTIVE'} href="/lawyer/superadmin?status=ACTIVE">Aktivni predmeti</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" class:active={$params.status=='ARCHIVED'} href="/lawyer/superadmin?status=ARCHIVED">Arhivirani predmeti</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-4">
+      <ul class="nav nav-pills d-none d-sm-block">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Advokati</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-2">
+      <button class="btn" on:click={()=>showCreateProfileModal=true}>Kreiraj profil</button>
+    </div>
+
+    
+  </div>
 
 
   <div class="row" style="overflow: auto;height: 100%;">
@@ -144,4 +165,9 @@
       <button class="btn btn-primary" on:click={saveAssignedLawyer} disabled={!selected_lawyer_uuid}>Assign</button>
     </h2>    
   </Modal>
+{/if}
+
+
+{#if showCreateProfileModal}
+<CreateLawyerProfile on:close={(created)=> {showCreateProfileModal=false; if (created) sa_lawyers_list.refresh()}}></CreateLawyerProfile>
 {/if}

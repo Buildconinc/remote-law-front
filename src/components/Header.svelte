@@ -91,7 +91,7 @@
         <a href="/client/dashboard" class="nav-link">Dashboard</a>
       </li>
       <li class="nav-item" >
-        <a href="#" class="nav-link" on:click={()=>{$session.isLogedIn = false; $session.token= null}}>Logout</a>
+        <a href="#" class="nav-link" on:click={()=>{$session.isLogedIn = false; $session.token= null; document.location = document.location}}>Logout</a>
       </li>
     </ul>
 {:else }

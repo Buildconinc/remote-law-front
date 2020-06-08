@@ -46,7 +46,7 @@
             <input
               type="email"
               class="form-control"
-              placeholder="example@email.com"
+              placeholder="email"
               id="email"
               required
               bind:value={obj.email}
