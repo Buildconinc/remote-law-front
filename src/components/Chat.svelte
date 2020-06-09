@@ -58,6 +58,7 @@
 	Add exclamation mark!
 </button>
 -->
+
 <div class="mesgs">
 
   <div class="msg_history" bind:this={msg_history_el}>
@@ -100,7 +101,7 @@
 <style>
 img{ max-width:100%;}
 .msg_history{
-  flex:1;
+  /*flex:1;*/
   overflow:auto;
 }
 .incoming_msg_img {
@@ -133,6 +134,7 @@ img{ max-width:100%;}
 .mesgs {
   display: flex;
   flex-flow: column;
+  justify-content: flex-end;
   padding: 30px 15px 0 25px;
   width: 100%;
   height: 100%;
