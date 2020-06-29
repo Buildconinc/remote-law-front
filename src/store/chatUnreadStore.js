@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 import { tweened } from 'svelte/motion';
 import { fetch2 } from '@/utils/fetch2.js'
-import { session } from '@/store/loginstore.js'
+import { session } from '@/store/loginStore.js'
 import { derived } from 'svelte/store';
 
 //function createUnreadChatStore() {
