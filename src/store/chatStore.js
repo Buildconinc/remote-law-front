@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import { fetch2 } from '@/utils/fetch2.js'
-import { session } from '@/store/loginstore.js'
+import { session } from '@/store/loginStore.js'
 import { chatUnreadStore } from '@/store/chatUnreadStore.js'
 import { get } from 'svelte/store';
 
