@@ -12,8 +12,9 @@
             <h5 class="card-title">
             <img height="40" width="40" class="img rounded-circle" src="{item.client_profile_photo}" alt="{item.client_name_first}  {item.client_name_last}">
             {item.client_name_first} {item.client_name_last}</h5>
-            <p class="card-text">{item.service_group_label} / {item.service_label}</p>
+            <p class="card-text">{item.service_group_label} / {item.service_label} <small>{item.created_date}</small></p>
             <p class="card-text">Step {item.current_step} / {item.latest_action_type} {item.latest_text}</p>
+            <a href="/lawyer/{item.case_uuid}" class="btn">Details</a>
           </div>
         </div>
       </div>

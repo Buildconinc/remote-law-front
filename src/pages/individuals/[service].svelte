@@ -1,5 +1,5 @@
 <script>
-  import { service_groups as service_groups_store} from '../../store/getStore.js'
+  import { service_groups as service_groups_store} from '@/store/getStore.js'
   import { goto } from '@sveltech/routify'
     
   let services = []

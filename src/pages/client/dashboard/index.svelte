@@ -1,16 +1,17 @@
 <script>
-  import { session } from '../../../store/loginStore.js'
-  $: console.log('sess dashb', $session)
-  import { service_groups as service_groups_store} from '../../../store/getStore.js'
+  import { session } from '@/store/loginStore.js'
+  //$: console.log('sess dashb', $session)
+  import { service_groups as service_groups_store} from '@/store/getStore.js'
 
-//  import {storeTemplate} from '../../../store/storeTemplate.js'
+//  import {storeTemplate} from '@/store/storeTemplate.js'
 //  let client_cases = storeTemplate('client_case')
 //  $: console.log('client_cases:', $client_cases.data)
   import { client_cases } from '@/store/getStore.js'
+  import { chatUnreadStore } from '@/store/chatUnreadStore.js'
 
-
-  import Modal from '../../../components/Modal.svelte'
+  import Modal from '@/components/Modal.svelte'
   let showModal = false
+ 
 </script>
 <style>
   .dropzone {
@@ -33,8 +34,22 @@
         {/each}
     <br>
     Lista Vasih predmeta: <br>
+
+    {#if !$client_cases.data || $client_cases.data.length===0}
+    {#each [1,2,3,4,5] as caze}
+      <a style="background-color: #ddd;" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+      <small style="background-color: #ddd;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small> 
+      <br>
+    {/each}
+    {/if}
+
     {#each $client_cases.data as caze}
-      <a href="/client/dashboard/{caze.case_uuid}">{caze.service_label}-{caze.case_text}</a><br>
+      <a href="/client/dashboard/{caze.case_uuid}">{caze.service_label}-{caze.case_text}</a>
+      <small>{caze.created_date}</small> 
+      {#if $chatUnreadStore[caze.case_uuid]}
+       <span class="badge badge-danger">{$chatUnreadStore[caze.case_uuid]} new message{$chatUnreadStore[caze.case_uuid]>1?'s':''}</span>
+      {/if}
+      <br>
     {/each}
     {:else}
     <div style="text-align:center">

@@ -1,5 +1,5 @@
 import {writable} from 'svelte/store';
-import {fetch2} from '../utils/fetch2.js'
+import {fetch2} from '@/utils/fetch2.js'
 
 //let SERVICE_NAME = 'dayz'
 async function refresh(sn, params) {

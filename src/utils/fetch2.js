@@ -1,4 +1,4 @@
-import { session } from '../store/loginStore.js'
+import { session } from '@/store/loginStore.js'
 let authorization = null;
 session.subscribe($session=>{
   authorization = $session?$session.token:null

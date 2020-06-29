@@ -5,17 +5,21 @@
   import { goto } from '@sveltech/routify'
   import { fetch2 } from '@/utils/fetch2.js'
   import { session } from '@/store/loginStore.js'
+  import FileThumbs from '@/components/FileThumbs.svelte' 
 
   export let service 
   let progress = 0
   let preview
   let case_text
+  let files = []
   function uploaded(o) {
+    console.log('Upload finished in beforebblebleb', o.detail)
     preview = o.detail.url
+    files = [...files, o.detail]
   }
 
   async function case_insert(){
-    let [res, err] = await fetch2('api/v2/'+ ($session.isLogedIn?'':'public_') +'client_case_save', {service_uuid:service, case_text:case_text, tmp_user_uuid:tmp_user_uuid})
+    let [res, err] = await fetch2('api/v2/'+ ($session.isLogedIn?'':'public_') +'client_case_save', {service_uuid:service, case_text:case_text, tmp_user_uuid:tmp_user_uuid, files:files})
     if (res && res.results && res.results.case_uuid) {
       $goto(`/individuals/checkout/${res.results.case_uuid}`);
     }    
@@ -31,21 +35,22 @@
     <div class="col-md-6 mb-4">
       <div class="card">
         <div class="card-body" style="text-align: center;">
-          <h5 class="card-title">click below to upload or dragndrp your doc here</h5>
-          
+          <h5 class="card-title">Upload your doc</h5>
+<!--          
             {#if preview}
               <img src="{preview}" alt="" class="img-fluid mx-auto d-block">
               <button type="button" class="btn btn-light" on:click={()=>preview=null}>Upload other image</button>
             {:else}
+-->
               <FileUpload on:progress={(o)=>{progress=o.detail} } on:uploaded = {uploaded}>
                 <div class="dropzone" style="background-image: linear-gradient(to right, #0e0 {progress}%, white {progress}%);">
-                  upload or dragndrp your doc here<br>
+                  Click or drag &amp; drop your doc here<br>
                   DROPZONE
                 </div>
               </FileUpload>
-            {/if}
+<!--            {/if} -->
 
-          
+          <FileThumbs files={files}></FileThumbs>
         </div>      
       </div>
     </div>

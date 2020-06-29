@@ -4,6 +4,7 @@
   import FileUpload from '@/components/FileUpload.svelte';
   import Chat from '@/components/Chat.svelte'
   import {storeTemplate} from '@/store/storeTemplate.js'
+  import FileThumbs from '@/components/FileThumbs.svelte' 
   let case_store
   let case_store_ready
   let currentStep
@@ -13,6 +14,7 @@
     console.log('files', files)
   }
   export let predmet 
+  console.log('dashboard/predmet $session', $session)
 
 $: if (predmet) case_store = storeTemplate('client_case_history', {case_uuid:predmet})
 
@@ -38,7 +40,7 @@ $: if ($case_store && $case_store.data && $case_store.data.case_info) {
   <div class="row" style="overflow:auto; height:100%">
     <div class="col-12 col-sm-6 col-lg-8" style="overflow:auto; height:100%">
       <h2>Izabrani predmet = {predmet}</h2>
-      <p>loged_in <input type="checkbox" bind:checked={$session.isLogedIn}></p>
+      session =<pre>{JSON.stringify($session)}</pre>
       {#if case_store_ready}
         case_status = {$case_store.data.case_info.case_status}
         <br>
@@ -54,20 +56,25 @@ $: if ($case_store && $case_store.data && $case_store.data.case_info) {
           {step.step_label}
           <div style="transform: rotateZ({currentStep == step.step_id?'180':'0'}deg);
     transform-origin: center center;
-    transition: 0.3s all;
+    transition: 0.1s all;
     display: inline-block;">&#9650;
           </div>
           <img src="{step.image}" style="float:right; height:1em" alt="">
         </h3>
           {#if currentStep == step.step_id}
             {#each step.steps as item}
-              <div class="row" transition:slide={{duration:300}}>
+<!--              <div class="row" in:slide={{duration:300}}> -->
+              <div class="row" >
                 <div class="col-4">
                   <h5>{item.action_type}</h5>
                 </div>
                 <div class="col-8">
                   <h5>
-                    {item.tekst} 
+                    {#if item.action_type == 'CLIENTDOCUMENT'}
+                      <FileThumbs files={ [{url:item.tekst, name:item.file_name}] }></FileThumbs>
+                    {:else}
+                      {item.tekst}
+                    {/if} 
                     <small>{new Date(item.created_date).toLocaleDateString()}  {new Date(item.created_date).toLocaleTimeString()}</small>
                   </h5>
                 </div>

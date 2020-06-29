@@ -38,7 +38,7 @@
   ///// Igor
   import Toast from 'svelte-toast'
   const izitoast = new Toast()
-  import { session } from '../store/loginStore.js'
+  import { session, tmp_user_uuid } from '@/store/loginStore.js'
   let token = null;
   session.subscribe($session=>{
     token = $session?$session.token:null
@@ -46,21 +46,26 @@
 
   export let progress = 0
   export let state = null
-  export let url = null 
-
+  export let URL = 'https://remotelaw.ga/api/v2/fileupload' 
+  export let fileCategory = null
+  let file_ref
 
   function uploadFile(file){
+    file_ref = file
     //var file = file1.files[0];
+//    let [res, err] = await fetch2('api/v2/'+ ($session.isLogedIn?'':'public_') +'client_case_save', {service_uuid:service, case_text:case_text, tmp_user_uuid:tmp_user_uuid})
+    
     var formdata = new FormData();
     formdata.append("file", file);
-    formdata.append('user', 'person');// Additional params here (fileCategory...)
+    if (fileCategory) formdata.append('fileCategory', fileCategory);
+    if (!$session.isLogedIn) formdata.append('tmp_user', tmp_user_uuid);
 
     var ajax = new XMLHttpRequest();
     ajax.upload.addEventListener("progress", progressHandler, false);
     ajax.addEventListener("load", completeHandler, false);
     ajax.addEventListener("error", errorHandler, false);
     ajax.addEventListener("abort", abortHandler, false);
-    ajax.open("POST", "https://remotelaw.ga/api/v2/fileupload"); // http://www.developphp.com/video/JavaScript/File-Upload-Progress-Bar-Meter-Tutorial-Ajax-PHP
+    ajax.open("POST", URL+($session.isLogedIn?'':'_public')); // http://www.developphp.com/video/JavaScript/File-Upload-Progress-Bar-Meter-Tutorial-Ajax-PHP
     ajax.setRequestHeader('Authorization', 'Bearer ' + token);
     ajax.send(formdata);
     state = 'uploading'
@@ -82,9 +87,9 @@
     catch (err){
       izitoast.error( 'Upload completed but bad response received '+event.target.responseText);
     }
-    url = resp.results
+    
     izitoast.success('Upload finished');
-    dispatch("uploaded", { url:url });
+    dispatch("uploaded", { url:resp.results, name:file_ref.name });
     progress = 0 //clear progress bar after successful upload
     dispatch("progress", progress);
     state = 'done'
@@ -117,7 +122,7 @@
   }
 </style>
 
-<label
+<label {...$$restProps}
   class:dragging
   on:drop|preventDefault={onFile(getFilesFromDropEvent)}
   on:dragover|preventDefault={startDragging}

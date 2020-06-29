@@ -1,8 +1,8 @@
 <script>
   import { isActive, url } from '@sveltech/routify'  
   import { afterUpdate } from 'svelte';
-  import { session } from '../store/loginStore.js'
-  import { clickOutside} from '../utils/clickOutside.js';
+  import { session } from '@/store/loginStore.js'
+  import { clickOutside} from '@/utils/clickOutside.js';
   import { beforeUrlChange } from "@sveltech/routify"
 
   $beforeUrlChange((event, store) => {
@@ -10,7 +10,7 @@
     return true
   })
 
-  import { service_groups as service_groups_store} from '../store/getStore.js'
+  import { service_groups as service_groups_store} from '@/store/getStore.js'
   console.log('uHederu', $service_groups_store)
 // bzveze test
 
@@ -86,11 +86,16 @@
 
 {#if $session.isLogedIn }
     <ul class="navbar-nav ">
+      <li class="nav-item" >
+        <span class="nav-link">{$session.email}</span>
+      </li>
+      <!--    
       <li class="nav-item" class:active={$isActive('/client/dashboard')}>
         <a href="/client/dashboard" class="nav-link">Dashboard</a>
       </li>
+      -->
       <li class="nav-item" >
-        <a href="#" class="nav-link" on:click={()=>{$session.isLogedIn = false; $session.token= null}}>Logout</a>
+        <a href="#" class="nav-link" on:click={()=>{$session={isLogedIn:false, token:null} }}>Logout</a>
       </li>
     </ul>
 {:else }

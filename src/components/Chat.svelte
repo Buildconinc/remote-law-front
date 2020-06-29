@@ -1,17 +1,32 @@
 <script>
   import { fly } from 'svelte/transition';
-  import { tick } from 'svelte';
-  import { name, greeting } from './chatStore.js';
-  import { afterUpdate } from 'svelte';
-
+  import { tick, onDestroy, afterUpdate } from 'svelte';
+  import FileUpload from '@/components/FileUpload.svelte';
  // import { socket } from './sock.js';
-  import { socketPromise } from './sock.js'
+  import { socketPromise } from '@/components/sock.js'
+  
   let socket 
   socketPromise.then((s)=> socket = s )
 
   export let predmet
   import {chatStore} from '@/store/chatStore.js'
+  import {chatUnreadStore} from '@/store/chatUnreadStore.js'
   chatStore.getPredmet(predmet)
+
+  //mark thread as read after 5 sec
+	const timer = setTimeout(function(){
+    //console.log('markMessageAsRead')
+    chatStore.markMessageAsRead(predmet)
+  }, 5000)
+
+	onDestroy(() => {
+		if (timer) clearTimeout(timer);
+	});
+
+  function gotFiles(files) {
+    //do something with files
+    console.log('files uloaded iz chat-a', files)
+  }
 /*
   import { route, getDirection } from '@sveltech/routify'
   $: lastRoute = $route.last
@@ -45,32 +60,23 @@
     await tick()
     text_to_send = ''
     msg_history_el.scrollTop = 9999999
-    
-
   }
 </script>
 
-<!--
-<h1>{$greeting}</h1>
-<input bind:value={$name}>
 
-<button on:click="{() => $name += '!'}">
-	Add exclamation mark!
-</button>
--->
 
 <div class="mesgs">
 
   <div class="msg_history" bind:this={msg_history_el}>
-    {#each $chatStore[predmet] || [] as msg (msg.m_id)}
+    {#each $chatStore[predmet] || [] as msg, index (msg.m_id)}
       {#if msg.incoming}
 
         <div class="incoming_msg" in:fly="{{ x: 40, duration: 200 }}">
           <div class="incoming_msg_img"> <img src="{msg.img}" alt="sunil"> </div>
           <div class="received_msg">
-            <div class="received_withd_msg">
+            <div class="received_withd_msg"  class:bold={($chatStore[predmet].length - index - 1) < ($chatUnreadStore[predmet] || 0)} >
               <p>{msg.text1}</p>
-              <span class="time_date">{msg.ts}</span></div>
+              <span class="time_date">{new Date(msg.ts).toLocaleString()}</span></div>
           </div>
         </div>
       
@@ -89,6 +95,13 @@
   <div class="type_msg">
     <div class="input_msg_write">
       <textarea on:keyup={handleKeydown} bind:this={text_to_send_el} class="write_msg" placeholder="Type a message" bind:value={text_to_send} />
+      
+      <FileUpload on:input={gotFiles} style="height: 33px; position: absolute; right: 33px; top: 11px; width: 33px;">
+        <div class="dropzone">
+          File
+        </div>
+      </FileUpload>
+
       <button class="msg_send_btn" type="button" on:click = { addMsg }>
         <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
       </button>
@@ -123,6 +136,7 @@ img{ max-width:100%;}
   padding: 5px 10px 5px 12px;
   width: 100%;
   white-space: pre-wrap;
+  word-break: break-word;
 }
 .time_date {
   color: #747474;
@@ -148,6 +162,7 @@ img{ max-width:100%;}
   padding: 5px 10px 5px 12px;
   width:100%;
   white-space: pre-wrap;
+  word-break: break-word;
 }
 .outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
 .sent_msg {
@@ -179,5 +194,8 @@ img{ max-width:100%;}
   right: 0;
   top: 11px;
   width: 33px;
+}
+.bold{
+  font-weight: bold;
 }
 </style>

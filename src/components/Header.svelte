@@ -1,16 +1,17 @@
 <script>
   import { isActive, url } from '@sveltech/routify'  
   import { afterUpdate } from 'svelte';
-  import { session } from '../store/loginStore.js'
-  import { clickOutside} from '../utils/clickOutside.js';
+  import { session } from '@/store/loginStore.js'
+  import { clickOutside} from '@/utils/clickOutside.js';
   import { beforeUrlChange } from "@sveltech/routify"
+  import { chatUnreadStore, chatUnreadStoreTotal, chatUnreadStoreTotalTweened } from '@/store/chatUnreadStore.js'
 
   $beforeUrlChange((event, store) => {
     if (collapse_el) collapse_el.classList.add('collapse');
     return true
   })
 
-  import { service_groups as service_groups_store} from '../store/getStore.js'
+  import { service_groups as service_groups_store} from '@/store/getStore.js'
   console.log('uHederu', $service_groups_store)
 // bzveze test
 
@@ -64,6 +65,10 @@
   function toggle(){
     collapse_el.classList.toggle('collapse');
   }
+
+  let is_unread_count_open=false
+
+
 </script>
 
 <svelte:window on:resize={handleResize}></svelte:window>
@@ -87,8 +92,29 @@
 
 {#if $session.isLogedIn }
     <ul class="navbar-nav ">
-      <li class="nav-item" class:active={$isActive('/client/dashboard')}>
+      <li class="nav-item" >
+        <small class="nav-link">{$session.email}</small>
+      </li>
+<!--
+      <li class="nav-item dropdown" class:show={is_unread_count_open}>
+        <a on:click={()=>is_unread_count_open= !is_unread_count_open} class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {$chatUnreadStoreTotal} msgs
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" class:show={is_unread_count_open}>
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">{JSON.stringify($chatUnreadStore)}</a>
+        </div>
+      </li>
+-->
+      <li class="nav-item" class:active={$isActive('/client/dashboard')} style="position: relative">
         <a href="/client/dashboard" class="nav-link">Dashboard</a>
+        {#if $chatUnreadStoreTotal}
+          <span class="badge badge-pill badge-danger" style="position: absolute; top: 0; right: 0;">
+          {$chatUnreadStoreTotalTweened|0}
+          </span>  
+        {/if}             
       </li>
       <li class="nav-item" >
         <a href="#" class="nav-link" on:click={()=>{$session.isLogedIn = false; $session.token= null; document.location = document.location}}>Logout</a>
