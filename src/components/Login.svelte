@@ -83,7 +83,7 @@
         </form>
         <div class="text-center">
           <p>or</p>
-          <a href="/signup{$params.from?'/?from='+$params.from:''}" class="btn btn-success">Create account</a>
+          <a href="/signup{$params && $params.from?'/?from='+$params.from:''}" class="btn btn-success">Create account</a>
           <!--
           <p class="small">
             <a href="#">Have you forgotten your account details?</a>

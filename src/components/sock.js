@@ -33,6 +33,7 @@ export const socketPromise = new Promise(function(resolve, reject) {
     }  
 
     if (!resolved) resolve(socket)     
+    console.log('sock resolved')
     resolved = true
   });
   socket.on('event', function(data){

@@ -14,7 +14,12 @@ function uuidv4() {
 export const tmp_user_uuid = getLocalStorageItem('tmp_user_uuid') || uuidv4()
 setLocalStorageItem('tmp_user_uuid', tmp_user_uuid)
 
-const loginLocalStorage = getLocalStorageItem('login') || { isLogedIn:false, token:null }
+let loginLocalStorage = getLocalStorageItem('login') || { isLogedIn:false, token:null }
+
+// only for fakn server side render
+if (navigator.userAgent.match('jsdom')){
+  loginLocalStorage = {"isLogedIn":true,"token":null, rola:'CLIENT'}
+}
 //selectedModule:null, 
 export const session = writable(loginLocalStorage)
 

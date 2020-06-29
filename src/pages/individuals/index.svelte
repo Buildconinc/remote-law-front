@@ -1,10 +1,10 @@
 <script>
   import { service_groups as service_groups_store} from '@/store/getStore.js'
-  import { ready } from '@sveltech/routify'
+//  import { ready } from '@sveltech/routify'
   let services = []
   $: if ($service_groups_store.data && $service_groups_store.data[1]) {
     services = $service_groups_store.data[1].services;
-    $ready()
+   // $ready()
   }
 </script>
 
