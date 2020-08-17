@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
 import { chatStore } from '@/store/chatStore.js';
+import { notificationStore } from '@/store/notificationStore.js';
 import { session } from '@/store/loginStore.js'
 let resolved
 let sess 
@@ -48,6 +49,10 @@ export const socketPromise = new Promise(function(resolve, reject) {
   socket.on('tb_message', function(data){
     console.log('tb_message event iz sock.js', data)
     chatStore.incoming_message_from_sock(data)
+  });  
+  socket.on('tb_notify_user', function(data){
+    console.log('tb_notify_user event iz sock.js', data)
+    notificationStore.incoming_notification_from_sock(data)
   });  
 });
 

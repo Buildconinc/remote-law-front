@@ -18,8 +18,13 @@ let loginLocalStorage = getLocalStorageItem('login') || { isLogedIn:false, token
 
 // only for fakn server side render
 if (navigator.userAgent.match('jsdom')){
-  loginLocalStorage = {"isLogedIn":true,"token":null, rola:'CLIENT'}
+  loginLocalStorage = {
+    "isLogedIn":true
+  , "token":null
+  , "rola":'CLIENT'
+  }
 }
+
 //selectedModule:null, 
 export const session = writable(loginLocalStorage)
 

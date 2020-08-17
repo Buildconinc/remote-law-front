@@ -5,6 +5,9 @@
   import { clickOutside} from '@/utils/clickOutside.js';
   import { beforeUrlChange } from "@sveltech/routify"
   import { chatUnreadStore, chatUnreadStoreTotal, chatUnreadStoreTotalTweened } from '@/store/chatUnreadStore.js'
+  import { notificationUnreadStore, notificationUnreadStoreTotal, notificationUnreadStoreTotalTweened } from '@/store/notificationUnreadStore.js'
+  
+  import { socketPromise } from '@/components/sock.js'; // da bi forsirao load u dynamic ssr
 
   $beforeUrlChange((event, store) => {
     if (collapse_el) collapse_el.classList.add('collapse');
@@ -114,7 +117,12 @@
           <span class="badge badge-pill badge-danger" style="position: absolute; top: 0; right: 0;">
           {$chatUnreadStoreTotalTweened|0}
           </span>  
-        {/if}             
+        {/if}         
+        {#if $notificationUnreadStoreTotal}
+          <span class="badge badge-pill badge-warning" style="position: absolute; top: 0; right: 2em;">
+          {$notificationUnreadStoreTotalTweened|0}
+          </span>  
+        {/if}                       
       </li>
       <li class="nav-item" >
         <a href="#" class="nav-link" on:click={()=>{$session.isLogedIn = false; $session.token= null; document.location = document.location}}>Logout</a>

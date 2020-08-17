@@ -105,8 +105,22 @@ let modalsStack = []
 	function handleKeydown(event) {
     // close topmost modal 
     if (event.keyCode == 27 && modalsStack && modalsStack.length>0){
-      modalsStack[modalsStack.length-1]()
+      modalsStack[modalsStack.length-1].close()
     }
+
+    if (event.key === 'Tab') {
+      // trap focus
+      const nodes = modalsStack[modalsStack.length-1].nodes.querySelectorAll('*');
+      console.log('tab', nodes)
+      const tabbable = Array.from(nodes).filter(n => n.tabIndex >= 0);
+      let index = tabbable.indexOf(document.activeElement);
+      if (index === -1 && event.shiftKey) index = 0;
+      index += tabbable.length + (event.shiftKey ? -1 : 1);
+      index %= tabbable.length;
+      tabbable[index].focus();
+      event.preventDefault();
+    }
+
     //if (event.keyCode == 13) onSave() // enter
 	}
   let keyDownFnRef = window.addEventListener("keydown", handleKeydown);
@@ -153,7 +167,7 @@ let modalsStack = []
     document.body.appendChild(modal_element) // detach modal to body
     roundCssTransformMatrix(modal_div)
     //if (!window.modalsStack) window.modalsStack = []
-    modalsStack.push(close)
+    modalsStack.push({close:close, nodes:modal_div})
   });
 
   onDestroy(() => {

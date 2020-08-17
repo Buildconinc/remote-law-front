@@ -13,6 +13,7 @@ const distDir = 'dist'
 const buildDir = `${distDir}/build`
 const production = !process.env.ROLLUP_WATCH;
 const bundling = process.env.BUNDLING || production ? 'dynamic' : 'bundle'
+//const bundling = 'bundle'
 const shouldPrerender = (typeof process.env.PRERENDER !== 'undefined') ? process.env.PRERENDER : !!production
 
 
