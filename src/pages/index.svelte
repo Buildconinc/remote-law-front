@@ -41,7 +41,7 @@
 
       <div class="col-sm-3 px-3">
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top w-50 mx-auto py-5" src="/images/home-services-1.png" alt="Companies">
+            <img class="card-img-top image-on w-50 mx-auto py-5" src="/images/Companies.svg" alt="Companies">
           <div class="card-body">
             <a href="/companies" class="stretched-link">
              <h5 class="card-title"><span>Companies_</span></h5>
@@ -53,7 +53,7 @@
 
       <div class="col-sm-3 px-3">
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top w-50 mx-auto py-5" src="/images/home-services-2.png" alt="Individuals">
+          <img class="card-img-top w-50 mx-auto py-5" src="/images/Individuals.svg" alt="Individuals">
           <div class="card-body">
             <a href="/individuals" class="stretched-link">
              <h5 class="card-title"><span>Individuals_</span></h5>
@@ -65,7 +65,7 @@
 
       <div class="col-sm-3 px-3">      
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top w-50 mx-auto py-5" src="/images/home-services-3.png" alt="Realestate">
+          <img class="card-img-top w-50 mx-auto py-5" src="/images/Real-Estate.svg" alt="Realestate">
           <div class="card-body">
             <a href="/realestate" class="stretched-link">
              <h5 class="card-title"><span>Realestate_</span></h5>
@@ -77,7 +77,7 @@
 
       <div class="col-sm-3 px-3">         
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top w-50 mx-auto py-5" src="/images/home-services-4.png" alt="Taxation">
+          <img class="card-img-top w-50 mx-auto py-5" src="/images/Taxation.svg" alt="Taxation">
           <div class="card-body">
             <a href="/taxation" class="stretched-link">
              <h5 class="card-title"><span>Taxation_</span></h5>
@@ -99,7 +99,7 @@ $session.role= {JSON.stringify($session)}
 
 <style>
   .home-1{
-    background-image: url(/images/home-1.png);
+    background-image: url(/images/cover.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
     width:100%;
@@ -126,5 +126,4 @@ $session.role= {JSON.stringify($session)}
   .home-2 {
     background-color: #fafafa;
   }
-
 </style>

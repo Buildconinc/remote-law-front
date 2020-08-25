@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="52px" height="64px" viewBox="0 0 52 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 37</title>
+    <g id="Page-1-Copy-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="5-checkout" transform="translate(-728.000000, -985.000000)" stroke="#2E3092" stroke-width="2">
+            <g id="Group-37" transform="translate(729.000000, 986.000000)">
+                <line x1="43" y1="28" x2="43" y2="31" id="Stroke-1"></line>
+                <line x1="38" y1="27" x2="38" y2="30" id="Stroke-2"></line>
+                <line x1="33" y1="25" x2="33" y2="29" id="Stroke-3"></line>
+                <g id="Group-36">
+                    <path d="M27,63 L27,53 C27,52.447 27.447,52 28,52 L47,52 C47.553,52 48,52.447 48,53 L48,63" id="Stroke-4"></path>
+                    <path d="M45,26 C46.656,26 48,27.344 48,29 L48,36 C48,43 46,47 46,49 L46,52" id="Stroke-6" stroke-linejoin="round"></path>
+                    <path d="M40,24 C41.656,24 43,25.344 43,27 L43,29" id="Stroke-8" stroke-linejoin="round"></path>
+                    <path d="M35,22 C36.656,22 38,23.344 38,25 L38,27" id="Stroke-10" stroke-linejoin="round"></path>
+                    <path d="M27,34 L27,13 C27,11.344 28.344,10 30,10 C31.656,10 33,11.344 33,13 L33,25" id="Stroke-12" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M29,52 L29,49 L23,41 C23,41 19.707,28.707 19,28 C18,27 19,25 21,25 C23,25 24,28 24,28 L27,34" id="Stroke-14" stroke-linejoin="round"></path>
+                    <path d="M16,31 L3,31 C1.344,31 0,29.656 0,28 L0,3 C0,1.344 1.344,0 3,0 L47,0 C48.656,0 50,1.344 50,3 L50,25" id="Stroke-16"></path>
+                    <line x1="50" y1="4" x2="0" y2="4" id="Stroke-18"></line>
+                    <line x1="0" y1="12" x2="24" y2="12" id="Stroke-20"></line>
+                    <line x1="21" y1="16" x2="3" y2="16" id="Stroke-22"></line>
+                    <line x1="50" y1="12" x2="36" y2="12" id="Stroke-24"></line>
+                    <line x1="3" y1="20" x2="12" y2="20" id="Stroke-26"></line>
+                    <line x1="47" y1="16" x2="39" y2="16" id="Stroke-28"></line>
+                    <line x1="33" y1="55" x2="33" y2="57" id="Stroke-30"></line>
+                    <line x1="33" y1="59" x2="33" y2="61" id="Stroke-32"></line>
+                    <line x1="14" y1="20" x2="16" y2="20" id="Stroke-34"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
