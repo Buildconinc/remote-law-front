@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="76px" height="94px" viewBox="0 0 76 94" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 15</title>
+    <g id="Page-1-Copy-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.501697359">
+        <g id="2-individuals" transform="translate(-146.000000, -537.000000)" stroke="#222829" stroke-width="2">
+            <g id="Group-15" transform="translate(147.000000, 538.000000)">
+                <g id="Group-7">
+                    <polyline id="Stroke-1" stroke-linejoin="round" points="69.56 0 74 0 74 92 0 92 0 0 45.88 0"></polyline>
+                    <line x1="11.84" y1="0" x2="11.84" y2="92" id="Stroke-3"></line>
+                    <polygon id="Stroke-5" points="65.12 0 65.12 20.7741935 57.72 13.3548387 50.32 20.7741935 50.32 0"></polygon>
+                </g>
+                <polygon id="Stroke-8" points="20.72 60.8387097 65.12 60.8387097 65.12 31.1612903 20.72 31.1612903"></polygon>
+                <line x1="28.12" y1="46" x2="57.72" y2="46" id="Stroke-9"></line>
+                <line x1="28.12" y1="51.9354839" x2="57.72" y2="51.9354839" id="Stroke-10"></line>
+                <line x1="5.92" y1="87.5483871" x2="5.92" y2="4.4516129" id="Stroke-11"></line>
+                <line x1="41.44" y1="40.0645161" x2="44.4" y2="40.0645161" id="Stroke-12"></line>
+                <line x1="35.52" y1="40.0645161" x2="38.48" y2="40.0645161" id="Stroke-13"></line>
+                <line x1="47.36" y1="40.0645161" x2="50.32" y2="40.0645161" id="Stroke-14"></line>
+            </g>
+        </g>
+    </g>
+</svg>

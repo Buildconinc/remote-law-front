@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="84px" height="90px" viewBox="0 0 84 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 49 Copy</title>
+    <defs>
+        <polygon id="path-1" points="0 90 84 90 84 0 0 0"></polygon>
+    </defs>
+    <g id="Page-1-Copy-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-49-Copy">
+            <path d="M23.8,5.625 L23.8,1.40625 L82.6,1.40625 L82.6,68.90625 C82.6,72.0126563 80.0926,74.53125 77,74.53125 C73.9074,74.53125 71.4,72.0126563 71.4,68.90625 L71.4,15.46875 C71.4,12.3623437 68.8926,9.84375 65.8,9.84375 C62.7074,9.84375 60.2,12.3623437 60.2,15.46875 L60.2,81.5625 L58.8,82.96875 L53.2,88.59375 L47.6,82.96875 L42,88.59375 L36.4,82.96875 L30.8,88.59375 L25.2,82.96875 L19.6,88.59375 L14,82.96875 L8.4,88.59375 L2.8,82.96875 L1.4,81.5625 L1.4,15.46875 C1.4,12.3623437 3.9074,9.84375 7,9.84375 L65.8,9.84375" id="Stroke-1" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></path>
+            <line x1="77" y1="74.53125" x2="64.4" y2="74.53125" id="Stroke-3" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="15.4" y1="74.53125" x2="12.6" y2="74.53125" id="Stroke-5" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="21" y1="74.53125" x2="18.2" y2="74.53125" id="Stroke-7" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="26.6" y1="74.53125" x2="23.8" y2="74.53125" id="Stroke-9" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="32.2" y1="74.53125" x2="29.4" y2="74.53125" id="Stroke-11" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="37.8" y1="74.53125" x2="35" y2="74.53125" id="Stroke-13" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="43.4" y1="74.53125" x2="40.6" y2="74.53125" id="Stroke-15" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="49" y1="74.53125" x2="46.2" y2="74.53125" id="Stroke-17" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="54.6" y1="74.53125" x2="51.8" y2="74.53125" id="Stroke-19" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="18.2" y1="18.28125" x2="29.4" y2="18.28125" id="Stroke-21" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="18.2" y1="23.90625" x2="54.6" y2="23.90625" id="Stroke-23" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="14" y1="70.3125" x2="14" y2="45" id="Stroke-25" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="9.8" y1="74.53125" x2="7" y2="74.53125" id="Stroke-27" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="8.4" y1="70.3125" x2="8.4" y2="45" id="Stroke-29" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="19.6" y1="70.3125" x2="19.6" y2="59.0625" id="Stroke-31" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="30.8" y1="70.3125" x2="30.8" y2="42.1875" id="Stroke-33" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="25.2" y1="70.3125" x2="25.2" y2="50.625" id="Stroke-35" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="36.4" y1="70.3125" x2="36.4" y2="53.4375" id="Stroke-37" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="42" y1="70.3125" x2="42" y2="45" id="Stroke-39" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="47.6" y1="70.3125" x2="47.6" y2="56.25" id="Stroke-41" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="53.2" y1="70.3125" x2="53.2" y2="39.375" id="Stroke-43" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <line x1="32.2" y1="18.28125" x2="54.6" y2="18.28125" id="Stroke-45" stroke="#2E3092" stroke-width="2" stroke-linejoin="round"></line>
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Clip-48"></g>
+            <polygon id="Stroke-47" stroke="#2E3092" stroke-width="2" stroke-linejoin="round" mask="url(#mask-2)" points="8.4 23.90625 14 23.90625 14 18.28125 8.4 18.28125"></polygon>
+        </g>
+    </g>
+</svg>

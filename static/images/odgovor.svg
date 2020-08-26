@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="113px" height="150px" viewBox="0 0 113 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 17</title>
+    <defs>
+        <polygon id="path-1" points="0 150 112.5 150 112.5 0 0 0"></polygon>
+    </defs>
+    <g id="Page-1-Copy-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="7-dashboard-copy" transform="translate(-192.000000, -672.000000)">
+            <g id="Group-17" transform="translate(192.000000, 672.000000)">
+                <g id="Group-5">
+                    <polyline id="Stroke-1" stroke="#2E3092" stroke-width="2" stroke-linejoin="round" points="82.03125 11.71875 110.15625 11.71875 110.15625 147.65625 2.34375 147.65625 2.34375 11.71875 30.46875 11.71875"></polyline>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-4"></g>
+                    <polygon id="Stroke-3" stroke="#2E3092" stroke-width="2" stroke-linejoin="round" mask="url(#mask-2)" points="30.46875 25.78125 82.03125 25.78125 82.03125 2.34375 30.46875 2.34375"></polygon>
+                </g>
+                <polyline id="Stroke-6" stroke="#2E3092" stroke-width="2" stroke-linejoin="round" points="89.0625 21.09375 96.09375 21.09375 96.09375 133.59375 16.40625 133.59375 16.40625 21.09375 23.4375 21.09375"></polyline>
+                <line x1="30.46875" y1="96.09375" x2="82.03125" y2="96.09375" id="Stroke-7" stroke="#2E3092" stroke-width="2"></line>
+                <line x1="30.46875" y1="105.46875" x2="82.03125" y2="105.46875" id="Stroke-8" stroke="#2E3092" stroke-width="2"></line>
+                <line x1="30.46875" y1="114.84375" x2="58.59375" y2="114.84375" id="Stroke-9" stroke="#2E3092" stroke-width="2"></line>
+                <g id="Group-16" transform="translate(32.812500, 9.375000)" stroke="#2E3092" stroke-width="2">
+                    <path d="M35.15625,43.359375 C35.15625,51.5625 30.5554687,58.59375 23.4375,58.59375 C16.3195313,58.59375 11.71875,51.5625 11.71875,43.359375 C11.71875,35.15625 14.0625,30.46875 23.4375,30.46875 C32.8125,30.46875 35.15625,35.15625 35.15625,43.359375 Z" id="Stroke-10"></path>
+                    <path d="M30.46875,56.25 L46.875,65.625 L46.875,70.3125 C46.875,74.1960938 44.53125,77.34375 42.1875,77.34375 L4.6875,77.34375 C2.34375,77.34375 0,74.1960938 0,70.3125 L0,65.625 L16.40625,56.25" id="Stroke-12"></path>
+                    <polyline id="Stroke-14" stroke-linejoin="round" points="7.03125 0 7.03125 7.03125 39.84375 7.03125 39.84375 0"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
