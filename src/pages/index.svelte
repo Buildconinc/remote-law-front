@@ -121,14 +121,19 @@
 
     <div class="home-4">
       <div class="row mx-0">
-        <div class="col-6 d-flex flex-column align-items-between p-5">    
+        <div class="col-6 d-flex justify-content-between p-5">    
           <div>
             <p>Remote Law_</p>
             <p></p>
           </div>
+          <div  class="d-flex flex-column justify-content-between" style="height:100%;">
+            <a href="" class="d-block">About</a>
+            <a href="" class="d-block">Faq</a>
+            <a href="" class="d-block">Contact</a>
+          </div>
         </div>
         <div class="col-6 bg-yellow">    
-    
+
         </div>
       </div>
     </div>
