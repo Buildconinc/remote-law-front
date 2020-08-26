@@ -4,6 +4,18 @@
   import FileUpload from '@/components/FileUpload.svelte';
   import Chat from '@/components/Chat.svelte'
   import {storeTemplate} from '@/store/storeTemplate.js'
+  import { fetch2 } from '@/utils/fetch2.js'
+
+    //dynamic components
+  import CLIENTDOCUMENT from '@/components/dynamic/CLIENTDOCUMENT.svelte' 
+  import LAWYERDOCUMENT from '@/components/dynamic/LAWYERDOCUMENT.svelte' 
+  import PAYMENTREQUEST from '@/components/dynamic/PAYMENTREQUEST.svelte' 
+  import PAYMENTCONFIRMED from '@/components/dynamic/PAYMENTCONFIRMED.svelte' 
+  import OTHER from '@/components/dynamic/OTHER.svelte' 
+  import RequestPaymentButton from '@/components/dynamic/RequestPaymentButton.svelte'
+  import NextStepButton from '@/components/dynamic/NextStepButton.svelte'
+  const components = { 'CLIENTDOCUMENT':CLIENTDOCUMENT, 'LAWYERDOCUMENT':LAWYERDOCUMENT, 'PAYMENTREQUEST':PAYMENTREQUEST, 'PAYMENTCONFIRMED':PAYMENTCONFIRMED }
+
   let case_store
   let case_store_ready
   let currentStep
@@ -12,6 +24,24 @@
     //do something with files
     console.log('files', files)
   }
+
+  async function uploaded(event) {
+    let { name, url } = event.detail
+    console.log('uploaded', url, name)
+    let [res, err] = await fetch2('api/v2/lawyer_assign_file_to_case_save', { name, url, case_uuid:predmet, step:$case_store.data.case_info.current_step })
+    //console.log(res,err)
+    if (res && res.results) {
+      case_store.refresh()
+      //izitoast.success('Napravio')
+      //dispatch("close", true);      
+    }
+    else {
+      //izitoast.error( (err && err.message)?err.message:'Greska')
+    }      
+
+  }
+  
+
   export let predmet 
   console.log('dashboard/predmet $session', $session)
 
@@ -63,15 +93,8 @@ $: if ($case_store && $case_store.data && $case_store.data.case_info) {
           {#if currentStep == step.step_id}
             {#each step.steps as item}
               <div class="row" transition:slide={{duration:100}}>
-                <div class="col-4">
-                  <h5>{item.action_type}</h5>
-                </div>
-                <div class="col-8">
-                  <h5>
-                    {item.tekst} 
-                    <small>{new Date(item.created_date).toLocaleDateString()}  {new Date(item.created_date).toLocaleTimeString()}</small>
-                  </h5>
-                </div>
+                <svelte:component on:refresh={()=>{case_store.refresh()}}
+                this={components[item.action_type] || OTHER} {item} case_store={$case_store.data} />
               </div>
 <!--
               <div transition:slide={{duration:300}}>
@@ -81,16 +104,20 @@ $: if ($case_store && $case_store.data && $case_store.data.case_info) {
                 created_date = {new Date(item.created_date).toLocaleDateString()}  {new Date(item.created_date).toLocaleTimeString()}<br>
               </div>
               -->
-            {/each}        
+            {/each}      
+
+            <RequestPaymentButton on:refresh={()=>{case_store.refresh()}} step={currentStep} case_store={$case_store.data} />  
+            <NextStepButton on:refresh={()=>{case_store.refresh()}} step={currentStep} case_store={$case_store.data} />
+            <FileUpload on:input={gotFiles} on:uploaded={uploaded} fileCategory='DOCUMENT'>
+              <div class="dropzone">
+                Upload doc here.<br>
+                DROPZONE
+              </div>
+            </FileUpload>            
           {/if}
         {/each}
       {/if}
-      <FileUpload on:input={gotFiles}>
-        <div class="dropzone">
-          Upload doc here.<br>
-          DROPZONE
-        </div>
-      </FileUpload>
+
 
     </div>
     <div class="col-12 col-sm-6 col-lg-4" style="height:100%">

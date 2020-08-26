@@ -4,7 +4,8 @@ export let files = [
   ]
 
 function get_img(file){
-  let arr = file.name.split('.')
+  if (!file || !file.name) return null
+  let arr = file.name.split('.');
   let ext = arr.pop()
   if ( ['pdf', 'zip', 'xls', 'xlsx', 'avi', 'css', 'doc', 'docx', 'eps', 'html', 'ini', 'mp3'
   , 'ppt', 'pptx', 'psd', 'pst', 'rar', 'readme'].includes(ext) )
