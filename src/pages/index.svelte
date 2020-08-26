@@ -44,7 +44,7 @@
       <div class="row">
 
         <div class="col-sm-3 px-3">
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="">
             <img class="card-img-top home image-on w-50 mx-auto py-5" src="/images/Companies.svg" alt="Companies"  use:hoverImgSrc={'/images/Companies-active.svg'}>
             <div class="card-body">
               <a href="/companies" class="">
@@ -56,7 +56,7 @@
         </div>
 
         <div class="col-sm-3 px-3">
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="">
             <img class="card-img-top w-50 mx-auto py-5" src="/images/Individuals.svg" alt="Individuals"  use:hoverImgSrc={'/images/Individuals active.svg'}>
             <div class="card-body">
               <a href="/individuals" class="">
@@ -68,7 +68,7 @@
         </div>
 
         <div class="col-sm-3 px-3">      
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="">
             <img class="card-img-top w-50 mx-auto py-5" src="/images/Real-Estate.svg" alt="Realestate"  use:hoverImgSrc={'/images/Real-Estate active.svg'}>
             <div class="card-body">
               <a href="/realestate" class="">
@@ -80,7 +80,7 @@
         </div>
 
         <div class="col-sm-3 px-3">         
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="">
             <img class="card-img-top w-50 mx-auto py-5" src="/images/Taxation.svg" alt="Taxation"  use:hoverImgSrc={'/images/Taxation active.svg'}>
             <div class="card-body">
               <a href="/taxation" class="">
