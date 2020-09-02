@@ -70,6 +70,7 @@ $: if ($case_store && $case_store.data && $case_store.data.case_info) {
     <div class="col-12 col-sm-6 col-lg-8" style="overflow:auto; height:100%">
       <h2>Izabrani predmet = {predmet}</h2>
       session =<pre>{JSON.stringify($session)}</pre>
+
       {#if case_store_ready}
         case_status = {$case_store.data.case_info.case_status}
         <br>
@@ -96,28 +97,19 @@ $: if ($case_store && $case_store.data && $case_store.data.case_info) {
                 <svelte:component on:refresh={()=>{case_store.refresh()}}
                 this={components[item.action_type] || OTHER} {item} case_store={$case_store.data} />
               </div>
-<!--
-              <div transition:slide={{duration:300}}>
-                action_type = {item.action_type}<br>
-                case_history_id = {item.case_history_id}<br>
-                text1 = {item.tekst}<br>
-                created_date = {new Date(item.created_date).toLocaleDateString()}  {new Date(item.created_date).toLocaleTimeString()}<br>
-              </div>
-              -->
             {/each}      
 
             <RequestPaymentButton on:refresh={()=>{case_store.refresh()}} step={currentStep} case_store={$case_store.data} />  
             <NextStepButton on:refresh={()=>{case_store.refresh()}} step={currentStep} case_store={$case_store.data} />
             <FileUpload on:input={gotFiles} on:uploaded={uploaded} fileCategory='DOCUMENT'>
               <div class="dropzone">
-                Upload doc here.<br>
+                Upload file here.<br>
                 DROPZONE
               </div>
             </FileUpload>            
           {/if}
         {/each}
       {/if}
-
 
     </div>
     <div class="col-12 col-sm-6 col-lg-4" style="height:100%">
