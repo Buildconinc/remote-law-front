@@ -123,7 +123,7 @@
       <div class="row mx-0">
         <div class="col-6 d-flex justify-content-between p-5">    
           <div>
-            <p>Remote Law_</p>
+            <h2>Remote Law_</h2>
             <p></p>
           </div>
           <div  class="d-flex flex-column justify-content-between" style="height:100%;">
