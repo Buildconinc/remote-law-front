@@ -44,7 +44,7 @@
       <div class="row">
 
         <div class="col-sm-3 px-3">
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="">
             <img class="card-img-top home image-on w-50 mx-auto py-5" src="/images/Companies.svg" alt="Companies"  use:hoverImgSrc={'/images/Companies-active.svg'}>
             <div class="card-body">
               <a href="/companies" class="">
@@ -56,7 +56,7 @@
         </div>
 
         <div class="col-sm-3 px-3">
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="">
             <img class="card-img-top w-50 mx-auto py-5" src="/images/Individuals.svg" alt="Individuals"  use:hoverImgSrc={'/images/Individuals active.svg'}>
             <div class="card-body">
               <a href="/individuals" class="">
@@ -68,7 +68,7 @@
         </div>
 
         <div class="col-sm-3 px-3">      
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="">
             <img class="card-img-top w-50 mx-auto py-5" src="/images/Real-Estate.svg" alt="Realestate"  use:hoverImgSrc={'/images/Real-Estate active.svg'}>
             <div class="card-body">
               <a href="/realestate" class="">
@@ -80,7 +80,7 @@
         </div>
 
         <div class="col-sm-3 px-3">         
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="">
             <img class="card-img-top w-50 mx-auto py-5" src="/images/Taxation.svg" alt="Taxation"  use:hoverImgSrc={'/images/Taxation active.svg'}>
             <div class="card-body">
               <a href="/taxation" class="">
@@ -121,14 +121,19 @@
 
     <div class="home-4">
       <div class="row mx-0">
-        <div class="col-6 d-flex flex-column align-items-between p-5">    
+        <div class="col-6 d-flex justify-content-between p-5">    
           <div>
             <p>Remote Law_</p>
             <p></p>
           </div>
+          <div  class="d-flex flex-column justify-content-between" style="height:100%;">
+            <a href="" class="d-block">About</a>
+            <a href="" class="d-block">Faq</a>
+            <a href="" class="d-block">Contact</a>
+          </div>
         </div>
         <div class="col-6 bg-yellow">    
-    
+
         </div>
       </div>
     </div>
