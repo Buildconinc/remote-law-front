@@ -18,7 +18,7 @@
 </script>
 {#if !$session.isLogedIn || $session.rola=='CLIENT'}
 
-  <div class="w-75 mx-auto">
+  <div class="mx-auto mw-1200">
 
     <div class="home-1">
       <div class="d-flex flex-column justify-content-between" style="height:70%;">
@@ -41,7 +41,7 @@
 
     <div class="home-2 p-5">
       <h2 class="my-5 pb-5">Services_</h2>
-      <div class="row">
+      <div class="row pb-5">
 
         <div class="col-sm-3 px-3">
           <div class="card" style="">
@@ -147,11 +147,13 @@ $session.role= {JSON.stringify($session)}
 -->
 
 <style>
-
+  .mw-1200 {
+    max-width: 1200px;
+  }
   .home-1{
     background-image: url(/images/cover.jpg);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     width:100%;
     min-height:70vh;
   }

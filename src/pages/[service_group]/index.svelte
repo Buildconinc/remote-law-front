@@ -16,7 +16,7 @@
   }
 </script>
 
-<div class="w-75 mx-auto">
+<div class="mw-1200 mx-auto">
   <div class="container-fluid">
     <div class="row padding-y-10">
       <div class="col-6">
@@ -24,7 +24,7 @@
       </div>
       <div class="col-6">
         <p> 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+          423543Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
           dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
@@ -35,12 +35,12 @@
     <div class="row mx-0">
       <!--Grid column-->
       {#each services as {uuid, label, image}}
-      <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4">
+      <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4 mx-auto">
         <div class="card" style="height:100%">
-          <img class="card-img-top" src="{image}" alt="{label}">
+          <img class="card-img-top w-33 mx-auto py-5" src="{image}" alt="{label}">
           <div class="card-body">
           <!-- <h5 class="card-title" style="text-transform: capitalize;">{$params.service_group}</h5> -->
-            <p class="card-text">{label}.</p>
+            <p class="card-text blue-font font-weight-600">{label}.</p>
           </div>  
           <div class="card-footer" style="border-top: none;">
             <a href="/{$params.service_group}/{uuid}" class="btn btn-primary stretched-link">Select</a>
@@ -55,6 +55,15 @@
 </div>
 
 <style>
+  .mw-1200 {
+    max-width: 1200px;
+  }
+  .blue-font {
+    color: #252889;
+  }
+  .font-weight-600 {
+    font-weight: 600;
+  }
   .bg-blue{
     background-color: #252889;
     color:white;
@@ -63,4 +72,8 @@
     padding-top:10rem;
     padding-bottom:10rem;
   }
+  .w-33 {
+    width:33%;
+  }
+
 </style>
